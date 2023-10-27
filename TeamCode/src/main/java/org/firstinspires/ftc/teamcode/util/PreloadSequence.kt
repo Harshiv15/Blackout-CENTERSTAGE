@@ -8,6 +8,7 @@ import com.amarcolini.joos.hardware.drive.DriveComponent
 class PreloadSequence(drive: DriveComponent, preloadTraj: TrajEnums.PreloadTrajs): Command() {
     init{
         SequentialCommand().add(
+            // sus
             drive.followTrajectory(preloadTraj.followWith(drive))
         )
     }
