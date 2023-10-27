@@ -61,10 +61,9 @@ import kotlin.math.PI
     @JvmField var MODULE_PID = PIDCoefficients(0.0, 0.0, 0.0)
 
     @JvmField var TRAJECTORY_CONSTRAINTS = DiffSwerveConstraints(
-        trackWidth = 1.0,
-        maxAccel = 5.0,
-        maxVel = 5.0,
-        maxGearVel = 100.0 * 0.3
+        trackWidth = 15.0,
+        maxAccel = 60.0,
+        maxVel = 60.0,
     )
 
     @JvmField var TRANSLATIONAL_PID = PIDCoefficients(0.0, 0.0, 0.0)

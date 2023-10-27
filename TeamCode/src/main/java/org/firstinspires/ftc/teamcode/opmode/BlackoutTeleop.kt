@@ -3,7 +3,10 @@ package org.firstinspires.ftc.teamcode.opmode
 import com.amarcolini.joos.command.Command
 import com.amarcolini.joos.geometry.Angle
 import com.amarcolini.joos.geometry.Pose2d
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
+@Suppress("unused")
+@TeleOp(name = "BlackoutTeleop (kotlin)")
 class BlackoutTeleop : BaseOpMode() {
     override fun preInit() {
         super.preInit()

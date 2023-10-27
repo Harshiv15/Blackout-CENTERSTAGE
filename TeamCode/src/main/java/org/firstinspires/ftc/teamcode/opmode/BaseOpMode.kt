@@ -13,8 +13,10 @@ import org.firstinspires.ftc.teamcode.Drive.DRIVE_RIGHT_A_NAME
 import org.firstinspires.ftc.teamcode.Drive.DRIVE_RIGHT_B_NAME
 import org.firstinspires.ftc.teamcode.Motors
 import org.firstinspires.ftc.teamcode.Motors.motorFactory
+import org.firstinspires.ftc.teamcode.subsystems.DriveSys
 
-open class BaseOpMode : CommandOpMode() {
+@Suppress("UNUSED_EXPRESSION")
+abstract class BaseOpMode : CommandOpMode() {
     lateinit var drive: DiffSwerveDrive
     var imu: Imu? = null
 
@@ -31,14 +33,10 @@ open class BaseOpMode : CommandOpMode() {
         val rightPivot = motorFactory(Motors.MotorType.DRIVE, DRIVE_RIGHT_A_NAME, hardwareMap)
         val rightDrive = motorFactory(Motors.MotorType.DRIVE, DRIVE_RIGHT_B_NAME, hardwareMap)
 
-        drive = DiffSwerveDrive(
+        drive = DriveSys(
             leftPivot to leftDrive,
             rightPivot to rightDrive,
-            imu,
-            DiffSwerveConstraints(12.0, 60.0, 60.0),
-            HEADING_PID,
-            TRANSLATIONAL_PID,
-            MODULE_PID
+            imu
         )
 
         register(drive)
@@ -49,12 +47,6 @@ open class BaseOpMode : CommandOpMode() {
 
         val res = imu?.autoDetectUpAxis()
 
-        if(res != null)
-            telemetry.addLine("imu axis: $res")
-        else {
-            telemetry.addLine("imu up axis not detected!")
-
-            imu = null
-        }
+        telemetry.addData("imu up axis", if(res != null) "$res" else {"not detected!"; imu = null}) // does this work?
     }
 }
